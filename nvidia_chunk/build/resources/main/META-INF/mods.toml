@@ -1,0 +1,66 @@
+# This is an example mods.toml file. It contains the data relating to the loading mods.
+# There are several mandatory fields (#mandatory), and many more that are optional (#optional).
+# The overall format is standard TOML format, v0.5.0.
+# Note that there are a couple of TOML lists in this file.
+# Find more information on toml format here:  https://github.com/toml-lang/toml
+# The name of the mod loader type to load - for regular FML @Mod mods it should be javafml
+modLoader = "javafml" #mandatory
+# A version range to match for said mod loader - for regular FML @Mod it will be the forge version
+loaderVersion = "[47,)" #mandatory This is typically bumped every Minecraft version by Forge. See our download page for lists of versions.
+# The license for you mod. This is mandatory metadata and allows for easier comprehension of your redistributive properties.
+# Review your options at https://choosealicense.com/. All rights reserved is the default copyright stance, and is thus the default here.
+license = "All Rights Reserved"
+# A URL to refer people to when problems occur with this mod
+#issueTrackerURL="https://change.me.to.your.issue.tracker.example.invalid/" #optional
+# A list of mods - how many allowed here is determined by the individual mod loader
+[[mods]] #mandatory
+# The modid of the mod
+modId = "nvidia_chunk" #mandatory
+# The version number of the mod
+version = "0.1.0-gpu-alpha" #mandatory
+# A display name for the mod
+displayName = "nvidia_chunk" #mandatory
+# A URL to query for updates for this mod. See the JSON update specification https://docs.minecraftforge.net/en/latest/misc/updatechecker/
+#updateJSONURL="https://change.me.example.invalid/updates.json" #optional
+# A URL for the "homepage" for this mod, displayed in the mod UI
+#displayURL="https://change.me.to.your.mods.homepage.example.invalid/" #optional
+# A file name (in the root of the mod JAR) containing a logo for display
+#logoFile="nvidia_chunk.png" #optional
+# A text field displayed in the mod UI
+#credits="Thanks for this example mod goes to Java" #optional
+# A text field displayed in the mod UI
+authors = "洛夜" #optional
+# Display Test controls the display for your mod in the server connection screen
+# 本模组为服务端区块生成加速模组：客户端无需安装即可连接安装了本模组的服务端。
+# IGNORE_ALL_VERSION 表示无论模组在客户端还是服务端存在，都不触发版本不匹配红叉。
+# 这使得本模组可作为纯服务端插件使用（Mohist / Forge / Catserver 等服务端均适用）。
+displayTest = "IGNORE_ALL_VERSION"
+
+# 客户端展示信息：本模组为"纯服务端"模组（仅服务端生效），客户端单独安装无任何效果。
+# 但由于 ImprovedNoise / NoiseChunk Mixin 必须在客户端/服务端两侧都生效
+# （Minecraft 集成服务端在客户端 JVM 中运行），故两侧都会加载 mod jar。
+# 真正的"客户端物理端"在 DistExecutor 中识别：纯客户端（无集成服务器）不分配 OpenCL 资源。
+
+# The description text for the mod (multi line!) (#mandatory)
+description = '''【纯服务端】使用 OpenCL 调用 NVIDIA / AMD / Intel 显卡并行加速 Minecraft 区块噪声生成。仅服务端生效，完全保留原版世界生成特性，兼容修改地形生成的模组。'''
+# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
+[[dependencies."nvidia_chunk"]] #optional
+# the modid of the dependency
+modId = "forge" #mandatory
+# Does this dependency have to exist - if not, ordering below must be specified
+mandatory = true #mandatory
+# The version range of the dependency
+versionRange = "[47,)" #mandatory
+# An ordering relationship for the dependency - BEFORE or AFTER required if the dependency is not mandatory
+# BEFORE - This mod is loaded BEFORE the dependency
+# AFTER - This mod is loaded AFTER the dependency
+ordering = "NONE"
+# Side this dependency is applied on - BOTH, CLIENT, or SERVER
+side = "BOTH"# Here's another dependency
+[[dependencies."nvidia_chunk"]]
+modId = "minecraft"
+mandatory = true
+# This version range declares a minimum of the current minecraft version up to but not including the next major version
+versionRange = "[1.20.1,1.21)"
+ordering = "NONE"
+side = "BOTH"

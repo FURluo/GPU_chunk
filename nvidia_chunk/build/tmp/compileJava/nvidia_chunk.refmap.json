@@ -1,0 +1,14 @@
+{
+  "mappings": {
+    "furluo/nvidia_chunk/mixin/ImprovedNoiseMixin": {
+      "noise(DDDDD)D": "Lnet/minecraft/world/level/levelgen/synth/ImprovedNoise;m_75327_(DDDDD)D"
+    }
+  },
+  "data": {
+    "searge": {
+      "furluo/nvidia_chunk/mixin/ImprovedNoiseMixin": {
+        "noise(DDDDD)D": "Lnet/minecraft/world/level/levelgen/synth/ImprovedNoise;m_75327_(DDDDD)D"
+      }
+    }
+  }
+}
